@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui">
     <head>
-        <title>Start Page</title>
+        <title>Couteau suisse</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
+    <style type="text/css">
+    .ui-stack {
+        z-index: 1000;
+    }
+    </style>
     <body>
-        <h1>Hello World!</h1>
+        oui
+        <p:stack icon="/resources/images/panier.png">
+            <p:menuitem value="Home" icon="/resources/images/panier.png" url="#"/>
+        </p:stack>
     </body>
 </html>
