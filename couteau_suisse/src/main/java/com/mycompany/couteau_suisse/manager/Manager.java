@@ -9,6 +9,5 @@ package com.mycompany.couteau_suisse.manager;
  *
  * @author eddy.parisi
  */
-public class StampPageXofY {
-    
+public class Manager {
 }
