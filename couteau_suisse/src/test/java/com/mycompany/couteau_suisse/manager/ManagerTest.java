@@ -41,18 +41,18 @@ public class ManagerTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of fusionnerDeuxPdf method, of class Manager.
-     */
-    @org.junit.Test
-    public void testFusionnerDeuxPdf() throws IOException {
-        PdfDocument un = new PdfDocument(new PdfReader("C:\\Users\\eddy.parisi\\Downloads\\TP - individuel.pdf"));
-        PdfDocument deux = new PdfDocument(new PdfReader("C:\\Users\\eddy.parisi\\Downloads\\1910171033GY772 (2).pdf"));
-        
-        PdfMerger merger = new PdfMerger(un);
-        merger.setCloseSourceDocuments(true);
-        PdfMerger a = merger.merge(deux, 1, deux.getNumberOfPages());
-        assertTrue(true);
-    }
+//    /**
+//     * Test of fusionnerDeuxPdf method, of class Manager.
+//     */
+//    @org.junit.Test
+//    public void testFusionnerDeuxPdf() throws IOException {
+//        PdfDocument un = new PdfDocument(new PdfReader("C:\\Users\\eddy.parisi\\Downloads\\TP - individuel.pdf"));
+//        PdfDocument deux = new PdfDocument(new PdfReader("C:\\Users\\eddy.parisi\\Downloads\\1910171033GY772 (2).pdf"));
+//        
+//        PdfMerger merger = new PdfMerger(un);
+//        merger.setCloseSourceDocuments(true);
+//        PdfMerger a = merger.merge(deux, 1, deux.getNumberOfPages());
+//        assertTrue(true);
+//    }
     
 }
