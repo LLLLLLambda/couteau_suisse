@@ -1,3 +1,7 @@
+a{
+    text-decoration: none;
+}
+
 .box,
 .sample-layout > div {
     background-color: #cce4f7;
