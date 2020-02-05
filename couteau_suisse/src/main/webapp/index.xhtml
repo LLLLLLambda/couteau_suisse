@@ -5,16 +5,49 @@
     <h:head>
         <title>Couteau suisse</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <h:outputStylesheet library="styles" name="primeflex.css" />
+        <h:outputStylesheet library="styles" name="main.css" />
     </h:head>
-    <style type="text/css">
-        .ui-stack {
-            z-index: 1000;
-        }
-    </style>
+
+
     <h:body>
-        oui
-        <p:stack icon="/resources/images/panier.png">
-            <p:menuitem value="Home" icon="/resources/images/panier.png" url="#"/>
-        </p:stack>
+        <h3>Nested</h3>
+        <div class="p-grid">
+            <div class="p-col-10">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <div class="box">12</div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-col-2">
+                <div class="box box-stretched">
+                    <div class="box">
+                        <p:link value="Fusion de PDF">
+                        </p:link>
+                    </div>
+                    <div class="box">
+                        <p:link value="Supprimer des pages">
+                        </p:link>
+                    </div>
+                    <div class="box">
+                        <p:link value="Trier des pages">
+                        </p:link>
+                    </div>
+                    <div class="box">
+                        <p:link value="Images en PDF">
+                        </p:link>
+                    </div>
+                    <div class="box">
+                        <p:link value="Extraire images d'un PDF">
+                        </p:link>
+                    </div>
+                    <div class="box">
+                        <p:link value="Signer PDF">
+                        </p:link>
+                    </div>
+                </div>
+            </div>
+        </div>
     </h:body>
 </html>
