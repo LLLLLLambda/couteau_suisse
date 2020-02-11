@@ -25,10 +25,10 @@
                         <h:form enctype="multipart/form-data"> 
                             <p:growl id="messages" showDetail="true" />
                             <div class="p-col-12">
-                                <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" />
+                                <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
                             </div>
                             <div class="p-col-12">
-                                <p:commandButton id="multi" value="Créer le PDF" action="#{fileUploadView.upload}" />
+                                <p:commandButton id="multi" value="Créer le PDF" ajax="false" process="@form" action="#{manager.upload}" />
                             </div>
                         </h:form>
                     </div>
