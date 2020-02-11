@@ -5,7 +5,7 @@
     <h:head>
         <title>Couteau suisse</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <h:outputScript library="scripts" name="fusion.js" />
+        <h:outputScript library="scripts" name="main.js" />
         <h:outputStylesheet library="styles" name="primeflex.css" />
         <h:outputStylesheet library="styles" name="main.css" />
     </h:head>
@@ -18,7 +18,7 @@
         <div class="p-grid nested-grid">
 
             <!--FUSION PDF-->
-            <div class="p-col-10 fusion">
+            <div id="fusion" class="p-col-10">
 
                 <!--UPLOAD BLOCK-->
                 <div class="p-grid">
@@ -54,7 +54,7 @@
             </div> <!--FIN FUSION PDF-->
 
             <!--SUPPRIMER PAGES-->
-            <div class="p-col-10 supp-pages hidden">
+            <div id="supp-pages" class="p-col-10 hidden">
 
                 <!--UPLOAD BLOCK-->
                 <div class="p-grid">
@@ -90,7 +90,7 @@
             </div> <!--FIN SUPPRIMER PAGES-->
             
             <!--TRIER PAGES-->
-            <div class="p-col-10 sort-pages hidden">
+            <div id="sort-pages" class="p-col-10 hidden">
 
                 <!--UPLOAD BLOCK-->
                 <div class="p-grid">
@@ -126,7 +126,7 @@
             </div> <!--FIN TRIER PAGES-->
             
             <!--IMAGE TO PDF-->
-            <div class="p-col-10 image-to-pdf hidden">
+            <div id="image-to-pdf" class="p-col-10 hidden">
 
                 <!--UPLOAD BLOCK-->
                 <div class="p-grid">
@@ -162,7 +162,7 @@
             </div> <!--FIN IMAGE TO PDF-->           
             
             <!--EXTRAIRE IMAGES-->
-            <div class="p-col-10 extract-images hidden">
+            <div id="extract-images" class="p-col-10 hidden">
 
                 <!--UPLOAD BLOCK-->
                 <div class="p-grid">
@@ -198,7 +198,7 @@
             </div> <!--FIN EXTRAIRE IMAGES-->
             
             <!--SIGNER PDF-->
-            <div class="p-col-10 sign-pdf hidden">
+            <div id="sign-pdf" class="p-col-10 hidden">
 
                 <!--UPLOAD BLOCK-->
                 <div class="p-grid">
@@ -237,28 +237,22 @@
             <div class="p-col-2">
                 <div class="box box-stretched">
                     <div class="box">
-                        <p:link value="Fusion de PDF">
-                        </p:link>
+                        <a onclick="toggleSection('fusion')">Fusion de PDF</a>
                     </div>
                     <div class="box">
-                        <p:link value="Supprimer des pages">
-                        </p:link>
+                        <a onclick="toggleSection('supp')">Supprimer des pages</a>
                     </div>
                     <div class="box">
-                        <p:link value="Trier des pages">
-                        </p:link>
+                        <a onclick="toggleSection('sort')">Trier des pages</a>
                     </div>
                     <div class="box">
-                        <p:link value="Images en PDF">
-                        </p:link>
+                        <a onclick="toggleSection('img')">Images en PDF</a>
                     </div>
                     <div class="box">
-                        <p:link value="Extraire images d'un PDF">
-                        </p:link>
+                        <a onclick="toggleSection('extract')">Extraire images d'un PDF</a>
                     </div>
                     <div class="box">
-                        <p:link value="Signer PDF">
-                        </p:link>
+                        <a onclick="toggleSection('sign')">Signer PDF</a>
                     </div>
                 </div>
             </div><!--END MAIN MENU-->
