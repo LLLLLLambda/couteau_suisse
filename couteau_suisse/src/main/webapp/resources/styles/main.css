@@ -29,3 +29,7 @@ a{
     background: #efefef;
     border-radius: 4px;
 }
+
+.toto {
+    border: 1px black dotted;
+}
