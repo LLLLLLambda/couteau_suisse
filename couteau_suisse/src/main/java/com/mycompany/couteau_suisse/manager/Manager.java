@@ -35,7 +35,7 @@ import org.primefaces.shaded.commons.io.FilenameUtils;
 @Named
 @RequestScoped
 public class Manager {
-    private final String pathPdfWritter = "src/main/webapp/resources/pdf/pdf7.pdf";
+    private final String pathPdfWritter = "";
     private StreamedContent pdfDownload;
     private UploadedFile file;
     private List<InputStream> listFilesUploaded = new ArrayList<>();
