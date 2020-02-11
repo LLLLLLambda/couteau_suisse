@@ -12,13 +12,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -26,18 +23,19 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
-import org.primefaces.shaded.commons.io.FilenameUtils;
 
 /**
  *
  * @author eddy.parisi
  */
 @Named
-@RequestScoped
-public class Manager {
-    private final String pathPdfWritter = "";
+@SessionScoped
+public class Manager implements Serializable {
+
+    private final String pathPdfWritter = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/pdf");
     private StreamedContent pdfDownload;
     private UploadedFile file;
+    private List<UserFile> userFiles = new ArrayList<>();
     private List<InputStream> listFilesUploaded = new ArrayList<>();
     
     /**
@@ -51,10 +49,15 @@ public class Manager {
             InputStream in = file.getInputstream();
             listFilesUploaded.add(in);
             
+            // Afficher le nom des fichiers enregistrés
+            UserFile uf = new UserFile(file.getFileName());
+            userFiles.add(uf);
+                    
             FacesMessage message = new FacesMessage(file.getFileName() + " : is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
+   
 
     /**
      * Parcourt listFilesUploaded, creer  une fusion stocké dans pathPdfWritter,
@@ -80,6 +83,7 @@ public class Manager {
         pdfDownload = new DefaultStreamedContent(in);
     }
     
+    
     public static void main(String[] args) throws IOException {
     }
     
@@ -103,8 +107,16 @@ public class Manager {
         this.file = file;
     }
     
+    /**
+     * @return the userFiles
+     */
+    public List<UserFile> getUserFiles() {
+        return userFiles;
+    }
+
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage msg = new FacesMessage(event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+
 }
