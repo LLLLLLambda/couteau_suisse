@@ -30,6 +30,6 @@ a{
     border-radius: 4px;
 }
 
-.toto {
-    border: 1px black dotted;
+.hidden {
+    display: none;
 }
