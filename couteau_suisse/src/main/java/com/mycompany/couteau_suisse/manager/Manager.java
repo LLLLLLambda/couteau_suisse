@@ -15,7 +15,6 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -31,10 +30,12 @@ import org.primefaces.model.UploadedFile;
  */
 @Named
 @SessionScoped
-public class Manager implements Serializable{
+public class Manager implements Serializable {
+
     private final String pathPdfWritter = "C:\\Users\\eddy.parisi\\Desktop\\mobilijeun\\a.pdf";
     private StreamedContent pdfDownload;
     private UploadedFile file;
+    private List<UserFile> userFiles = new ArrayList<>();
     private List<InputStream> listFilesUploaded = new ArrayList<>();
     
     /**
@@ -48,11 +49,16 @@ public class Manager implements Serializable{
             InputStream in = file.getInputstream();
             listFilesUploaded.add(in);
             
+            // Afficher le nom des fichiers enregistrés
+            UserFile uf = new UserFile(file.getFileName());
+            userFiles.add(uf);
+                    
             FacesMessage message = new FacesMessage(file.getFileName() + " : is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
-    
+   
+
     /**
      * Parcourt listFilesUploaded, creer  une fusion stocké dans pathPdfWritter,
      * et afffecté à pdfDownload.
@@ -77,6 +83,7 @@ public class Manager implements Serializable{
         pdfDownload = new DefaultStreamedContent(in, "application/pdf", "hop.pdf");
     }
     
+    
     public static void main(String[] args) throws IOException {
     }
     
@@ -100,8 +107,16 @@ public class Manager implements Serializable{
         this.file = file;
     }
     
+    /**
+     * @return the userFiles
+     */
+    public List<UserFile> getUserFiles() {
+        return userFiles;
+    }
+
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage msg = new FacesMessage(event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+
 }

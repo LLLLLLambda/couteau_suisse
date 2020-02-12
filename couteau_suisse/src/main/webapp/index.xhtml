@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Couteau suisse</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -13,30 +14,38 @@
 
     <h:body>
         <!--MAIN CONTAINER-->
-        
-        
+
+
         <div class="p-grid nested-grid">
 
             <!--FUSION PDF-->
             <div id="fusion" class="p-col-10">
 
                 <!--UPLOAD BLOCK-->
-                <div class="p-grid">
+                <div class="p-grid p-justify-center">
 
-                    <div class="p-col-3">
+                    <div id="fusion-upload-block" class="p-col-3">
                         <h:form enctype="multipart/form-data"> 
                             <p:growl id="messages" showDetail="true" />
                             <div class="p-col-12">
                                 <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
                             </div>
                             <div class="p-col-12">
-                                <p:commandButton id="multi" value="+" ajax="false" process="@form" action="#{manager.upload}" />
+                                <p:commandButton id="fusion-submit-upload" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
                             </div>
                         </h:form>
                     </div>
 
                     <div class="p-col-9">
                         <h3>Fusionner des PDF</h3>
+                        <h:form id="file-fusion">
+                            <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
+                                <f:facet name="header">
+                                    PDFs
+                                </f:facet>
+                                #{file.name}
+                            </p:dataList>
+                        </h:form>
                         <h:form enctype="multipart/form-data"> 
                             <p:commandButton value="Fusionner" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
                         </h:form>
@@ -69,13 +78,24 @@
                                 <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
                             </div>
                             <div class="p-col-12">
-                                <p:commandButton id="multi" value="Créer le PDF" ajax="false" process="@form" action="#{manager.upload}" />
+                                <p:commandButton id="multi" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
                             </div>
                         </h:form>
                     </div>
 
                     <div class="p-col-9">
                         <h3>Supprimer les pages d'un PDF</h3>
+                        <h:form id="file-supp">
+                            <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
+                                <f:facet name="header">
+                                    PDF
+                                </f:facet>
+                                #{file.name}
+                            </p:dataList>
+                        </h:form>
+                        <h:form enctype="multipart/form-data"> 
+                            <p:commandButton value="Supprimer pages" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
+                        </h:form>
                     </div>
 
                 </div><!--END UPLOAD BLOCK-->
@@ -91,7 +111,7 @@
                 </div><!--END DOWNLOAD BLOCK-->
 
             </div> <!--FIN SUPPRIMER PAGES-->
-            
+
             <!--TRIER PAGES-->
             <div id="sort-pages" class="p-col-10 hidden">
 
@@ -105,13 +125,24 @@
                                 <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
                             </div>
                             <div class="p-col-12">
-                                <p:commandButton id="multi" value="Créer le PDF" ajax="false" process="@form" action="#{manager.upload}" />
+                                <p:commandButton id="multi" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
                             </div>
                         </h:form>
                     </div>
 
                     <div class="p-col-9">
                         <h3>Trier les pages du PDF</h3>
+                        <h:form id="file-sort">
+                            <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
+                                <f:facet name="header">
+                                    PDF
+                                </f:facet>
+                                #{file.name}
+                            </p:dataList>
+                        </h:form>
+                        <h:form enctype="multipart/form-data"> 
+                            <p:commandButton value="Trier" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
+                        </h:form>
                     </div>
 
                 </div><!--END UPLOAD BLOCK-->
@@ -127,7 +158,7 @@
                 </div><!--END DOWNLOAD BLOCK-->
 
             </div> <!--FIN TRIER PAGES-->
-            
+
             <!--IMAGE TO PDF-->
             <div id="image-to-pdf" class="p-col-10 hidden">
 
@@ -141,13 +172,24 @@
                                 <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
                             </div>
                             <div class="p-col-12">
-                                <p:commandButton id="multi" value="Créer le PDF" ajax="false" process="@form" action="#{manager.upload}" />
+                                <p:commandButton id="multi" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
                             </div>
                         </h:form>
                     </div>
 
                     <div class="p-col-9">
                         <h3>Convertir une image en PDF</h3>
+                        <h:form id="file-image-pdf">
+                            <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
+                                <f:facet name="header">
+                                    Image
+                                </f:facet>
+                                #{file.name}
+                            </p:dataList>
+                        </h:form>
+                        <h:form enctype="multipart/form-data"> 
+                            <p:commandButton value="Convertir" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
+                        </h:form>
                     </div>
 
                 </div><!--END UPLOAD BLOCK-->
@@ -163,7 +205,7 @@
                 </div><!--END DOWNLOAD BLOCK-->
 
             </div> <!--FIN IMAGE TO PDF-->           
-            
+
             <!--EXTRAIRE IMAGES-->
             <div id="extract-images" class="p-col-10 hidden">
 
@@ -177,13 +219,24 @@
                                 <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
                             </div>
                             <div class="p-col-12">
-                                <p:commandButton id="multi" value="Créer le PDF" ajax="false" process="@form" action="#{manager.upload}" />
+                                <p:commandButton id="multi" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
                             </div>
                         </h:form>
                     </div>
 
                     <div class="p-col-9">
                         <h3>Extraitre les images d'un pDF</h3>
+                        <h:form id="file-extract">
+                            <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
+                                <f:facet name="header">
+                                    PDF Uploadés
+                                </f:facet>
+                                #{file.name}
+                            </p:dataList>
+                        </h:form>
+                        <h:form enctype="multipart/form-data"> 
+                            <p:commandButton value="Extraire" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
+                        </h:form>
                     </div>
 
                 </div><!--END UPLOAD BLOCK-->
@@ -199,7 +252,7 @@
                 </div><!--END DOWNLOAD BLOCK-->
 
             </div> <!--FIN EXTRAIRE IMAGES-->
-            
+
             <!--SIGNER PDF-->
             <div id="sign-pdf" class="p-col-10 hidden">
 
@@ -213,13 +266,24 @@
                                 <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
                             </div>
                             <div class="p-col-12">
-                                <p:commandButton id="multi" value="Créer le PDF" ajax="false" process="@form" action="#{manager.upload}" />
+                                <p:commandButton id="multi" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
                             </div>
                         </h:form>
                     </div>
 
                     <div class="p-col-9">
                         <h3>Signer un PDF</h3>
+                        <h:form id="file-sign">
+                            <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
+                                <f:facet name="header">
+                                    PDF Uploadés
+                                </f:facet>
+                                #{file.name}
+                            </p:dataList>
+                        </h:form>
+                        <h:form enctype="multipart/form-data"> 
+                            <p:commandButton value="Signer" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
+                        </h:form>
                     </div>
 
                 </div><!--END UPLOAD BLOCK-->
@@ -235,7 +299,7 @@
                 </div><!--END DOWNLOAD BLOCK-->
 
             </div> <!--FIN SIGNER PDF-->
-            
+
             <!--MAIN MENU-->
             <div class="p-col-2">
                 <div class="box box-stretched">

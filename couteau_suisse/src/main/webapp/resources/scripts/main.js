@@ -4,6 +4,10 @@ let sortBlock;
 let imagesBlock;
 let extractBlock;
 let signBlock;
+let fileListFusion;
+let fusionUploadBlock;
+
+
 document.addEventListener("DOMContentLoaded", function() {
     fusionBlock = document.getElementById("fusion");
     suppBlock = document.getElementById('supp-pages');
@@ -11,7 +15,16 @@ document.addEventListener("DOMContentLoaded", function() {
     imagesBlock = document.getElementById('image-to-pdf');
     extractBlock = document.getElementById('extract-images');
     signBlock = document.getElementById('sign-pdf');
+    fileListFusion = document.getElementById("form:j_idt15_list") ;
+    fusionUploadBlock = document.getElementById('fusion-upload-block');
+    
+    
+    if (fileListFusion) fileListFusion = fileListFusion.getElementsByTagName('li');
+    if (fileListFusion.length === 2 || fileListFusion.length > 2) {
+        fusionUploadBlock.classList.add('hidden');
+    }
 });
+
 
 
 function toggleSection(section) {

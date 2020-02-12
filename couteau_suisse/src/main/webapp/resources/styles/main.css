@@ -34,3 +34,16 @@ a{
 .hidden {
     display: none;
 }
+
+.ui-datalist {
+    width:300px;
+    margin-bottom: 20px;
+}
+
+.ui-datalist-item {
+    padding:3px;
+}
+
+.paginated .ui-datalist-data {
+    padding-left: 20px;
+}
