@@ -84,18 +84,38 @@
                     </div>
 
                     <div class="p-col-9">
-                        <h3>Supprimer les pages d'un PDF</h3>
-                        <h:form id="file-supp">
-                            <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
-                                <f:facet name="header">
-                                    PDF
-                                </f:facet>
-                                #{file.name}
-                            </p:dataList>
-                        </h:form>
-                        <h:form enctype="multipart/form-data"> 
-                            <p:commandButton value="Supprimer pages" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
-                        </h:form>
+                        <div class="p-grid">
+                            <h3 class="p-col-12">Supprimer les pages d'un PDF</h3>
+                            <div class="p-col-12">
+
+                                <h:form id="file-supp">
+                                    <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
+                                        <f:facet name="header">
+                                            PDF
+                                        </f:facet>
+                                        #{file.name}
+                                    </p:dataList>
+                                </h:form>
+                            </div>
+
+
+                            <div class="p-col-12">
+                                <h:form id="proposition" class="center">
+
+                                    <h:inputText id="nombre" title="Choisir un numero de page" value="#{toto}" size="2" >
+                                        <f:validateLongRange minimum="1" maximum="100" />
+                                    </h:inputText > 
+
+                                    <h:commandButton value="Ok" action="#{toto}"/> 
+                                </h:form>
+
+                                <h:form enctype="multipart/form-data"> 
+                                    <p:commandButton value="Trier" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
+                                </h:form>
+                            </div>
+                        </div>
+
+
                     </div>
 
                 </div><!--END UPLOAD BLOCK-->
@@ -104,7 +124,7 @@
                 <div class="p-col-12">
                     <h3>Le PDF est prêt !</h3>
                     <h:form>   
-                        <p:commandButton value="Télécharger le PDF">
+                        <p:commandButton value="Télécharger le PDF" ajax="false">
                             <p:fileDownload value="#{toto}" />
                         </p:commandButton>      
                     </h:form> 
@@ -132,6 +152,7 @@
 
                     <div class="p-col-9">
                         <h3>Trier les pages du PDF</h3>
+
                         <h:form id="file-sort">
                             <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
                                 <f:facet name="header">
@@ -140,10 +161,9 @@
                                 #{file.name}
                             </p:dataList>
                         </h:form>
-                        <h:form enctype="multipart/form-data"> 
-                            <p:commandButton value="Trier" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
-                        </h:form>
+
                     </div>
+
 
                 </div><!--END UPLOAD BLOCK-->
 

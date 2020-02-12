@@ -32,7 +32,7 @@ import org.primefaces.model.UploadedFile;
 @SessionScoped
 public class Manager implements Serializable {
 
-    private final String pathPdfWritter = "C:\\Users\\eddy.parisi\\Desktop\\mobilijeun\\a.pdf";
+    private final String pathPdfWritter = "C:\\Users\\errab\\app-pdf\\a.pdf";
     private StreamedContent pdfDownload;
     private UploadedFile file;
     private List<UserFile> userFiles = new ArrayList<>();
@@ -82,6 +82,8 @@ public class Manager implements Serializable {
         
         InputStream in = new FileInputStream(new File(pathPdfWritter));
         pdfDownload = new DefaultStreamedContent(in, "application/pdf", "hop.pdf");
+        listFilesUploaded.clear();
+        System.out.println(listFilesUploaded);
     }
     
     

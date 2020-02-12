@@ -47,3 +47,8 @@ a{
 .paginated .ui-datalist-data {
     padding-left: 20px;
 }
+
+.center {
+    display: block;
+    margin: 0 auto;
+}
