@@ -31,12 +31,15 @@ import org.primefaces.model.UploadedFile;
 @Named
 @SessionScoped
 public class Manager implements Serializable {
-
+    
     private final String pathPdfWritter = "C:\\Users\\eddy.parisi\\Desktop\\mobilijeun\\a.pdf";
     private StreamedContent pdfDownload;
     private UploadedFile file;
     private List<UserFile> userFiles = new ArrayList<>();
     private List<InputStream> listFilesUploaded = new ArrayList<>();
+    
+    //supprimer page
+    private int numeroDeLaPageASupprimer;
     
     /**
      * Ajoute le fichier upload par l'utilisateur dans listFilesUploaded et
@@ -52,13 +55,13 @@ public class Manager implements Serializable {
             // Afficher le nom des fichiers enregistrés
             UserFile uf = new UserFile(file.getFileName());
             userFiles.add(uf);
-                    
+            
             FacesMessage message = new FacesMessage(file.getFileName() + " : is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
-   
-
+    
+    
     /**
      * Parcourt listFilesUploaded, creer  une fusion stocké dans pathPdfWritter,
      * et afffecté à pdfDownload.
@@ -68,6 +71,7 @@ public class Manager implements Serializable {
     public void fusionnerDeuxPdf() throws IOException{
         PdfWriter writer = new PdfWriter(new File(pathPdfWritter));
         writer.setSmartMode(true);
+        
         try (PdfDocument pdfDoc = new PdfDocument(writer)) {
             pdfDoc.initializeOutlines();
             
@@ -77,10 +81,30 @@ public class Manager implements Serializable {
                     docToAdd.close();
                 }
             }
+            
+            InputStream in = new FileInputStream(new File(pathPdfWritter));
+            pdfDownload = new DefaultStreamedContent(in, "application/pdf", "hop.pdf");
         }
         
-        InputStream in = new FileInputStream(new File(pathPdfWritter));
-        pdfDownload = new DefaultStreamedContent(in, "application/pdf", "hop.pdf");
+    }
+    
+    /**
+     * Supprime une page du pdf
+     *
+     * @throws IOException
+     */
+    public void supprimerPage() throws IOException{
+        
+        if (listFilesUploaded.size() != 1) {
+            InputStream in = listFilesUploaded.get(0);
+            
+            try (PdfDocument docToRemovePage = new PdfDocument(new PdfReader(in))) {
+                docToRemovePage.removePage(numeroDeLaPageASupprimer);
+                docToRemovePage.close();
+            }
+            
+            pdfDownload = new DefaultStreamedContent(in, "application/pdf", "supprimer.pdf");
+        }
     }
     
     
@@ -113,10 +137,10 @@ public class Manager implements Serializable {
     public List<UserFile> getUserFiles() {
         return userFiles;
     }
-
+    
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage msg = new FacesMessage(event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    
 }
