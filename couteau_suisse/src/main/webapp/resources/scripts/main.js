@@ -5,7 +5,8 @@ let imagesBlock;
 let extractBlock;
 let signBlock;
 let fileListFusion;
-let fusionSubmitButton;
+let fusionUploadBlock;
+
 
 document.addEventListener("DOMContentLoaded", function() {
     fusionBlock = document.getElementById("fusion");
@@ -15,11 +16,12 @@ document.addEventListener("DOMContentLoaded", function() {
     extractBlock = document.getElementById('extract-images');
     signBlock = document.getElementById('sign-pdf');
     fileListFusion = document.getElementById("form:j_idt15_list") ;
-    fusionSubmitButton = document.getElementById('j_idt9:fusion-submit-upload');
+    fusionUploadBlock = document.getElementById('fusion-upload-block');
+    
     
     if (fileListFusion) fileListFusion = fileListFusion.getElementsByTagName('li');
     if (fileListFusion.length === 2 || fileListFusion.length > 2) {
-        fusionSubmitButton.disabled = true;
+        fusionUploadBlock.classList.add('hidden');
     }
 });
 

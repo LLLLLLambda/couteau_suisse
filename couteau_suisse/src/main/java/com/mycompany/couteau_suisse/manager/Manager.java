@@ -32,7 +32,7 @@ import org.primefaces.model.UploadedFile;
 @SessionScoped
 public class Manager implements Serializable {
 
-    private final String pathPdfWritter = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/pdf");
+    private final String pathPdfWritter = "";
     private StreamedContent pdfDownload;
     private UploadedFile file;
     private List<UserFile> userFiles = new ArrayList<>();
