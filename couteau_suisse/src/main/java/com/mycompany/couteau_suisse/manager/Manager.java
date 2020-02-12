@@ -37,6 +37,23 @@ public class Manager implements Serializable {
     private UploadedFile file;
     private List<UserFile> userFiles = new ArrayList<>();
     private List<InputStream> listFilesUploaded = new ArrayList<>();
+    private int nombreDePage;
+
+    public int getNombreDePage() {
+        return nombreDePage;
+    }
+
+    public void setNombreDePage(int nombreDePage) {
+        this.nombreDePage = nombreDePage;
+    }
+
+    public int getNumeroDeLaPageASupprimer() {
+        return numeroDeLaPageASupprimer;
+    }
+
+    public void setNumeroDeLaPageASupprimer(int numeroDeLaPageASupprimer) {
+        this.numeroDeLaPageASupprimer = numeroDeLaPageASupprimer;
+    }
     
     //supprimer page
     private int numeroDeLaPageASupprimer;
@@ -55,6 +72,12 @@ public class Manager implements Serializable {
             // Afficher le nom des fichiers enregistrés
             UserFile uf = new UserFile(file.getFileName());
             userFiles.add(uf);
+            
+            //set le nombre de page (fait uniquement pour : suppression de page)
+            if(listFilesUploaded.size() == 1) {
+                PdfDocument pdf = new PdfDocument(new PdfReader(in));
+                nombreDePage = pdf.getNumberOfPages();
+            }
             
             FacesMessage message = new FacesMessage(file.getFileName() + " : is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
@@ -100,12 +123,14 @@ public class Manager implements Serializable {
             
             try (PdfDocument docToRemovePage = new PdfDocument(new PdfReader(in))) {
                 docToRemovePage.removePage(numeroDeLaPageASupprimer);
+                docToRemovePage.getNumberOfPages();
                 docToRemovePage.close();
             }
             
             pdfDownload = new DefaultStreamedContent(in, "application/pdf", "supprimer.pdf");
         }
     }
+    
     
     
     public static void main(String[] args) throws IOException {
