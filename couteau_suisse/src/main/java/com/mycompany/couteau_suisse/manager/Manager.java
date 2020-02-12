@@ -12,13 +12,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -26,25 +24,24 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
-import org.primefaces.shaded.commons.io.FilenameUtils;
 
 /**
  *
  * @author eddy.parisi
  */
 @Named
-@RequestScoped
-public class Manager {
-    private final String pathPdfWritter = "";
+@SessionScoped
+public class Manager implements Serializable{
+    private final String pathPdfWritter = "C:\\Users\\eddy.parisi\\Desktop\\mobilijeun\\a.pdf";
     private StreamedContent pdfDownload;
     private UploadedFile file;
     private List<InputStream> listFilesUploaded = new ArrayList<>();
     
     /**
-     * Ajoute le fichier upload par l'utilisateur dans listFilesUploaded et 
+     * Ajoute le fichier upload par l'utilisateur dans listFilesUploaded et
      * lui signal avec un pop up sur son interface
-     * 
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     public void upload() throws IOException {
         if (file != null) {
@@ -55,12 +52,12 @@ public class Manager {
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
-
+    
     /**
      * Parcourt listFilesUploaded, creer  une fusion stocké dans pathPdfWritter,
      * et afffecté à pdfDownload.
-     * 
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     public void fusionnerDeuxPdf() throws IOException{
         PdfWriter writer = new PdfWriter(new File(pathPdfWritter));
@@ -72,12 +69,12 @@ public class Manager {
                 try (PdfDocument docToAdd = new PdfDocument(new PdfReader(in))) {
                     docToAdd.copyPagesTo(1, docToAdd.getNumberOfPages(), pdfDoc);
                     docToAdd.close();
-                }           
+                }
             }
         }
         
         InputStream in = new FileInputStream(new File(pathPdfWritter));
-        pdfDownload = new DefaultStreamedContent(in);
+        pdfDownload = new DefaultStreamedContent(in, "application/pdf", "hop.pdf");
     }
     
     public static void main(String[] args) throws IOException {
@@ -90,15 +87,15 @@ public class Manager {
     public UploadedFile getFile() {
         return file;
     }
-
+    
     public String getPathPdfWritter() {
         return pathPdfWritter;
     }
-
+    
     public StreamedContent getPdfDownload() {
         return pdfDownload;
     }
-
+    
     public void setFile(UploadedFile file) {
         this.file = file;
     }
