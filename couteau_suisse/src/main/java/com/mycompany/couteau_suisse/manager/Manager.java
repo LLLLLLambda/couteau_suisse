@@ -83,7 +83,7 @@ public class Manager implements Serializable {
         InputStream in = new FileInputStream(new File(pathPdfWritter));
         pdfDownload = new DefaultStreamedContent(in, "application/pdf", "hop.pdf");
         listFilesUploaded.clear();
-        System.out.println(listFilesUploaded);
+        userFiles.clear();
     }
     
     

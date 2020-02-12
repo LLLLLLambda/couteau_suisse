@@ -14,28 +14,26 @@
 
     <h:body>
         <!--MAIN CONTAINER-->
-
-
         <div class="p-grid nested-grid">
+            
+            
+            <div id="fusion-upload-block" class="p-col-3">
+                <h:form enctype="multipart/form-data"> 
+                    <p:growl id="messages" showDetail="true" />
+                    <div class="p-col-12">
+                        <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
+                    </div>
+                    <div class="p-col-12">
+                        <p:commandButton id="fusion-submit-upload" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
+                    </div>
+                </h:form>
+            </div>
 
             <!--FUSION PDF-->
             <div id="fusion" class="p-col-10">
 
                 <!--UPLOAD BLOCK-->
                 <div class="p-grid p-justify-center">
-
-                    <div id="fusion-upload-block" class="p-col-3">
-                        <h:form enctype="multipart/form-data"> 
-                            <p:growl id="messages" showDetail="true" />
-                            <div class="p-col-12">
-                                <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
-                            </div>
-                            <div class="p-col-12">
-                                <p:commandButton id="fusion-submit-upload" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
-                            </div>
-                        </h:form>
-                    </div>
-
                     <div class="p-col-9">
                         <h3>Fusionner des PDF</h3>
                         <h:form id="file-fusion">
@@ -53,15 +51,6 @@
 
                 </div><!--END UPLOAD BLOCK-->
 
-                <!--DOWNLOAD BLOCK-->
-                <div class="p-col-12">
-                    <h3>Le PDF est prêt !</h3>
-                    <h:form>   
-                        <p:commandButton value="Télécharger le PDF" ajax="false">
-                            <p:fileDownload value="#{manager.pdfDownload}" />
-                        </p:commandButton>      
-                    </h:form> 
-                </div><!--END DOWNLOAD BLOCK-->
 
             </div> <!--FIN FUSION PDF-->
 
@@ -70,19 +59,6 @@
 
                 <!--UPLOAD BLOCK-->
                 <div class="p-grid">
-
-                    <div class="p-col-3">
-                        <h:form enctype="multipart/form-data"> 
-                            <p:growl id="messages" showDetail="true" />
-                            <div class="p-col-12">
-                                <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
-                            </div>
-                            <div class="p-col-12">
-                                <p:commandButton id="multi" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
-                            </div>
-                        </h:form>
-                    </div>
-
                     <div class="p-col-9">
                         <div class="p-grid">
                             <h3 class="p-col-12">Supprimer les pages d'un PDF</h3>
@@ -114,21 +90,11 @@
                                 </h:form>
                             </div>
                         </div>
-
-
                     </div>
 
                 </div><!--END UPLOAD BLOCK-->
 
-                <!--DOWNLOAD BLOCK-->
-                <div class="p-col-12">
-                    <h3>Le PDF est prêt !</h3>
-                    <h:form>   
-                        <p:commandButton value="Télécharger le PDF" ajax="false">
-                            <p:fileDownload value="#{toto}" />
-                        </p:commandButton>      
-                    </h:form> 
-                </div><!--END DOWNLOAD BLOCK-->
+
 
             </div> <!--FIN SUPPRIMER PAGES-->
 
@@ -137,19 +103,6 @@
 
                 <!--UPLOAD BLOCK-->
                 <div class="p-grid">
-
-                    <div class="p-col-3">
-                        <h:form enctype="multipart/form-data"> 
-                            <p:growl id="messages" showDetail="true" />
-                            <div class="p-col-12">
-                                <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
-                            </div>
-                            <div class="p-col-12">
-                                <p:commandButton id="multi" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
-                            </div>
-                        </h:form>
-                    </div>
-
                     <div class="p-col-9">
                         <h3>Trier les pages du PDF</h3>
 
@@ -164,18 +117,7 @@
 
                     </div>
 
-
                 </div><!--END UPLOAD BLOCK-->
-
-                <!--DOWNLOAD BLOCK-->
-                <div class="p-col-12">
-                    <h3>Le PDF est prêt !</h3>
-                    <h:form>   
-                        <p:commandButton value="Télécharger le PDF">
-                            <p:fileDownload value="#{toto}" />
-                        </p:commandButton>      
-                    </h:form> 
-                </div><!--END DOWNLOAD BLOCK-->
 
             </div> <!--FIN TRIER PAGES-->
 
@@ -185,17 +127,7 @@
                 <!--UPLOAD BLOCK-->
                 <div class="p-grid">
 
-                    <div class="p-col-3">
-                        <h:form enctype="multipart/form-data"> 
-                            <p:growl id="messages" showDetail="true" />
-                            <div class="p-col-12">
-                                <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
-                            </div>
-                            <div class="p-col-12">
-                                <p:commandButton id="multi" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
-                            </div>
-                        </h:form>
-                    </div>
+
 
                     <div class="p-col-9">
                         <h3>Convertir une image en PDF</h3>
@@ -214,136 +146,94 @@
 
                 </div><!--END UPLOAD BLOCK-->
 
-                <!--DOWNLOAD BLOCK-->
-                <div class="p-col-12">
-                    <h3>Le PDF est prêt !</h3>
-                    <h:form>   
-                        <p:commandButton value="Télécharger le PDF">
-                            <p:fileDownload value="#{toto}" />
-                        </p:commandButton>      
-                    </h:form> 
-                </div><!--END DOWNLOAD BLOCK-->
+
 
             </div> <!--FIN IMAGE TO PDF-->           
 
             <!--EXTRAIRE IMAGES-->
             <div id="extract-images" class="p-col-10 hidden">
 
-                <!--UPLOAD BLOCK-->
-                <div class="p-grid">
 
-                    <div class="p-col-3">
-                        <h:form enctype="multipart/form-data"> 
-                            <p:growl id="messages" showDetail="true" />
-                            <div class="p-col-12">
-                                <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
-                            </div>
-                            <div class="p-col-12">
-                                <p:commandButton id="multi" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
-                            </div>
-                        </h:form>
-                    </div>
 
-                    <div class="p-col-9">
-                        <h3>Extraitre les images d'un pDF</h3>
-                        <h:form id="file-extract">
-                            <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
-                                <f:facet name="header">
-                                    PDF Uploadés
-                                </f:facet>
-                                #{file.name}
-                            </p:dataList>
-                        </h:form>
-                        <h:form enctype="multipart/form-data"> 
-                            <p:commandButton value="Extraire" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
-                        </h:form>
-                    </div>
-
-                </div><!--END UPLOAD BLOCK-->
-
-                <!--DOWNLOAD BLOCK-->
-                <div class="p-col-12">
-                    <h3>Le PDF est prêt !</h3>
-                    <h:form>   
-                        <p:commandButton value="Télécharger le PDF">
-                            <p:fileDownload value="#{toto}" />
-                        </p:commandButton>      
-                    </h:form> 
-                </div><!--END DOWNLOAD BLOCK-->
-
-            </div> <!--FIN EXTRAIRE IMAGES-->
-
-            <!--SIGNER PDF-->
-            <div id="sign-pdf" class="p-col-10 hidden">
-
-                <!--UPLOAD BLOCK-->
-                <div class="p-grid">
-
-                    <div class="p-col-3">
-                        <h:form enctype="multipart/form-data"> 
-                            <p:growl id="messages" showDetail="true" />
-                            <div class="p-col-12">
-                                <p:fileUpload value="#{manager.file}" mode="simple" skinSimple="true" />
-                            </div>
-                            <div class="p-col-12">
-                                <p:commandButton id="multi" value="Ajouter" ajax="false" process="@form" action="#{manager.upload}" />
-                            </div>
-                        </h:form>
-                    </div>
-
-                    <div class="p-col-9">
-                        <h3>Signer un PDF</h3>
-                        <h:form id="file-sign">
-                            <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
-                                <f:facet name="header">
-                                    PDF Uploadés
-                                </f:facet>
-                                #{file.name}
-                            </p:dataList>
-                        </h:form>
-                        <h:form enctype="multipart/form-data"> 
-                            <p:commandButton value="Signer" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
-                        </h:form>
-                    </div>
-
-                </div><!--END UPLOAD BLOCK-->
-
-                <!--DOWNLOAD BLOCK-->
-                <div class="p-col-12">
-                    <h3>Le PDF est prêt !</h3>
-                    <h:form>   
-                        <p:commandButton value="Télécharger le PDF">
-                            <p:fileDownload value="#{toto}" />
-                        </p:commandButton>      
-                    </h:form> 
-                </div><!--END DOWNLOAD BLOCK-->
-
-            </div> <!--FIN SIGNER PDF-->
-
-            <!--MAIN MENU-->
-            <div class="p-col-2">
-                <div class="box box-stretched">
-                    <div class="box">
-                        <a onclick="toggleSection('fusion')">Fusion de PDF</a>
-                    </div>
-                    <div class="box">
-                        <a onclick="toggleSection('supp')">Supprimer des pages</a>
-                    </div>
-                    <div class="box">
-                        <a onclick="toggleSection('sort')">Trier des pages</a>
-                    </div>
-                    <div class="box">
-                        <a onclick="toggleSection('img')">Images en PDF</a>
-                    </div>
-                    <div class="box">
-                        <a onclick="toggleSection('extract')">Extraire images d'un PDF</a>
-                    </div>
-                    <div class="box">
-                        <a onclick="toggleSection('sign')">Signer PDF</a>
-                    </div>
+                <div class="p-col-9">
+                    <h3>Extraitre les images d'un pDF</h3>
+                    <h:form id="file-extract">
+                        <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
+                            <f:facet name="header">
+                                PDF Uploadés
+                            </f:facet>
+                            #{file.name}
+                        </p:dataList>
+                    </h:form>
+                    <h:form enctype="multipart/form-data"> 
+                        <p:commandButton value="Extraire" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
+                    </h:form>
                 </div>
-            </div><!--END MAIN MENU-->
 
+            </div><!--END UPLOAD BLOCK-->
+
+        <!--SIGNER PDF-->
+        <div id="sign-pdf" class="p-col-10 hidden">
+
+            <!--UPLOAD BLOCK-->
+            <div class="p-grid">
+
+
+
+                <div class="p-col-9">
+                    <h3>Signer un PDF</h3>
+                    <h:form id="file-sign">
+                        <p:dataList value="#{manager.userFiles}" var="file" type="ordered">
+                            <f:facet name="header">
+                                PDF Uploadés
+                            </f:facet>
+                            #{file.name}
+                        </p:dataList>
+                    </h:form>
+                    <h:form enctype="multipart/form-data"> 
+                        <p:commandButton value="Signer" ajax="false" process="@form" action="#{manager.fusionnerDeuxPdf}" />
+                    </h:form>
+                </div>
+
+            </div><!--END UPLOAD BLOCK-->
+
+        </div> <!--FIN SIGNER PDF-->
+
+        <!--DOWNLOAD BLOCK-->
+        <div class="p-col-12">
+            <h3>Le PDF est prêt !</h3>
+            <h:form>   
+                <p:commandButton value="Télécharger le PDF" ajax="false">
+                    <p:fileDownload value="#{manager.pdfDownload}"/>
+                </p:commandButton>      
+            </h:form> 
+        </div><!--END DOWNLOAD BLOCK-->
+
+        <!--MAIN MENU-->
+        <div class="p-col-2">
+            <div class="box box-stretched">
+                <div class="box">
+                    <a onclick="toggleSection('fusion')">Fusion de PDF</a>
+                </div>
+                <div class="box">
+                    <a onclick="toggleSection('supp')">Supprimer des pages</a>
+                </div>
+                <div class="box">
+                    <a onclick="toggleSection('sort')">Trier des pages</a>
+                </div>
+                <div class="box">
+                    <a onclick="toggleSection('img')">Images en PDF</a>
+                </div>
+                <div class="box">
+                    <a onclick="toggleSection('extract')">Extraire images d'un PDF</a>
+                </div>
+                <div class="box">
+                    <a onclick="toggleSection('sign')">Signer PDF</a>
+                </div>
+            </div>
+        </div><!--END MAIN MENU-->
+
+        
         </div><!-- END MAIN CONTAINER -->
     </h:body>
 </html>
