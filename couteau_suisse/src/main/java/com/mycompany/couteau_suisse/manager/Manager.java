@@ -32,17 +32,17 @@ import org.primefaces.model.UploadedFile;
 @SessionScoped
 public class Manager implements Serializable {
 
-    private final String pathPdfWritter = "";
+    private final String pathPdfWritter = "C:\\Users\\eddy.parisi\\Desktop\\mobilijeun\\a.pdf";
     private StreamedContent pdfDownload;
     private UploadedFile file;
     private List<UserFile> userFiles = new ArrayList<>();
     private List<InputStream> listFilesUploaded = new ArrayList<>();
     
     /**
-     * Ajoute le fichier upload par l'utilisateur dans listFilesUploaded et 
+     * Ajoute le fichier upload par l'utilisateur dans listFilesUploaded et
      * lui signal avec un pop up sur son interface
-     * 
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     public void upload() throws IOException {
         System.out.println(pathPdfWritter);
@@ -63,8 +63,8 @@ public class Manager implements Serializable {
     /**
      * Parcourt listFilesUploaded, creer  une fusion stocké dans pathPdfWritter,
      * et afffecté à pdfDownload.
-     * 
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     public void fusionnerDeuxPdf() throws IOException{
         PdfWriter writer = new PdfWriter(new File(pathPdfWritter));
@@ -76,12 +76,12 @@ public class Manager implements Serializable {
                 try (PdfDocument docToAdd = new PdfDocument(new PdfReader(in))) {
                     docToAdd.copyPagesTo(1, docToAdd.getNumberOfPages(), pdfDoc);
                     docToAdd.close();
-                }           
+                }
             }
         }
         
         InputStream in = new FileInputStream(new File(pathPdfWritter));
-        pdfDownload = new DefaultStreamedContent(in);
+        pdfDownload = new DefaultStreamedContent(in, "application/pdf", "hop.pdf");
     }
     
     
@@ -95,15 +95,15 @@ public class Manager implements Serializable {
     public UploadedFile getFile() {
         return file;
     }
-
+    
     public String getPathPdfWritter() {
         return pathPdfWritter;
     }
-
+    
     public StreamedContent getPdfDownload() {
         return pdfDownload;
     }
-
+    
     public void setFile(UploadedFile file) {
         this.file = file;
     }
