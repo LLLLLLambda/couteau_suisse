@@ -32,29 +32,13 @@ import org.primefaces.model.UploadedFile;
 @SessionScoped
 public class Manager implements Serializable {
 
-    private final String pathPdfWritter = "C:\\Users\\errab\\app-pdf\\a.pdf";
+    private final String pathPdfWritter = "";
     private StreamedContent pdfDownload;
     private UploadedFile file;
     private List<UserFile> userFiles = new ArrayList<>();
     private List<InputStream> listFilesUploaded = new ArrayList<>();
     private int nombreDePage;
 
-    public int getNombreDePage() {
-        return nombreDePage;
-    }
-
-    public void setNombreDePage(int nombreDePage) {
-        this.nombreDePage = nombreDePage;
-    }
-
-    public int getNumeroDeLaPageASupprimer() {
-        return numeroDeLaPageASupprimer;
-    }
-
-    public void setNumeroDeLaPageASupprimer(int numeroDeLaPageASupprimer) {
-        this.numeroDeLaPageASupprimer = numeroDeLaPageASupprimer;
-    }
-    
     //supprimer page
     private int numeroDeLaPageASupprimer;
     
@@ -65,7 +49,6 @@ public class Manager implements Serializable {
      * @throws IOException
      */
     public void upload() throws IOException {
-        System.out.println(pathPdfWritter);
         if (file != null) {
             InputStream in = file.getInputstream();
             listFilesUploaded.add(in);
@@ -85,6 +68,13 @@ public class Manager implements Serializable {
         }
     }
     
+    /**
+     * reset les lists
+     */
+    public void reset() {
+        listFilesUploaded.clear();
+        userFiles.clear();        
+    }
     
     /**
      * Parcourt listFilesUploaded, creer  une fusion stocké dans pathPdfWritter,
@@ -108,12 +98,14 @@ public class Manager implements Serializable {
             
             InputStream in = new FileInputStream(new File(pathPdfWritter));
             pdfDownload = new DefaultStreamedContent(in, "application/pdf", "hop.pdf");
+            
+            reset();
         }
         
         InputStream in = new FileInputStream(new File(pathPdfWritter));
         pdfDownload = new DefaultStreamedContent(in, "application/pdf", "hop.pdf");
-        listFilesUploaded.clear();
-        userFiles.clear();
+        
+        reset();
     }
     
     /**
@@ -134,11 +126,8 @@ public class Manager implements Serializable {
             
             pdfDownload = new DefaultStreamedContent(in, "application/pdf", "supprimer.pdf");
         }
-    }
-    
-    
-    
-    public static void main(String[] args) throws IOException {
+        
+            reset();
     }
     
     public List<InputStream> getListFilesUploaded() {
@@ -157,13 +146,26 @@ public class Manager implements Serializable {
         return pdfDownload;
     }
     
+    public int getNombreDePage() {
+        return nombreDePage;
+    }
+
+    public int getNumeroDeLaPageASupprimer() {
+        return numeroDeLaPageASupprimer;
+    }
+
+    public void setNombreDePage(int nombreDePage) {
+        this.nombreDePage = nombreDePage;
+    }
+
+    public void setNumeroDeLaPageASupprimer(int numeroDeLaPageASupprimer) {
+        this.numeroDeLaPageASupprimer = numeroDeLaPageASupprimer;
+    }
+    
     public void setFile(UploadedFile file) {
         this.file = file;
     }
     
-    /**
-     * @return the userFiles
-     */
     public List<UserFile> getUserFiles() {
         return userFiles;
     }
