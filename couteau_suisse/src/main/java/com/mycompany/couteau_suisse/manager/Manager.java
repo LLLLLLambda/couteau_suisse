@@ -45,6 +45,7 @@ public class Manager implements Serializable {
      * @throws IOException 
      */
     public void upload() throws IOException {
+        System.out.println(pathPdfWritter);
         if (file != null) {
             InputStream in = file.getInputstream();
             listFilesUploaded.add(in);
